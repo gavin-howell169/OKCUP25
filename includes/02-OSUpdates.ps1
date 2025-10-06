@@ -53,14 +53,11 @@ function OSU-Enable-AutomaticUpdates {
 }
 #>
     param([hashtable]$Config)
-    function OSU-Enable-AutomaticUpdates {
-param([hashtable]$Config)
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Value 0
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AUOptions' -Value 4
 Write-Host "Automatic updates enabled (AUOptions=4)."
 }
 
-}
 
 function OSU-Restart-WindowsUpdateService {
 <#
