@@ -1,5 +1,5 @@
 # includes\02-OSUpdates.ps1
-# OS Updates – STUBS ONLY (no working commands included)
+# OS Updates ï¿½ STUBS ONLY (no working commands included)
 
 function Invoke-OSUpdates {
     param([hashtable]$Config)
@@ -32,7 +32,9 @@ function OSU-Enable-RecommendAndMicrosoftUpdate {
 }
 #>
     param([hashtable]$Config)
-    # TODO
+    Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'IncludeRecommendedUpdates' -Value 1
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update' -Name 'IncludeRecommendedUpdates' -Value 1
+Write-Host "Enabled Microsoft/recommended updates."
 }
 
 function OSU-Enable-AutomaticUpdates {
@@ -51,7 +53,13 @@ function OSU-Enable-AutomaticUpdates {
 }
 #>
     param([hashtable]$Config)
-    # TODO
+    function OSU-Enable-AutomaticUpdates {
+param([hashtable]$Config)
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Value 0
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AUOptions' -Value 4
+Write-Host "Automatic updates enabled (AUOptions=4)."
+}
+
 }
 
 function OSU-Restart-WindowsUpdateService {
